@@ -1,0 +1,223 @@
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: #1a4144;
+  padding: 25px;
+  box-sizing: border-box;
+  padding-top: 100px;
+  background: #f5f1ce;
+  padding-bottom: 80px;
+  margin: 0;
+}
+
+.intro {
+  max-width: 1200px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.intro p {
+  font-size: 22px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.main-container {
+  width: 100%;
+  max-width: 1100px;
+  background-color: #c66f44;
+  border-radius: 10px;
+  padding: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.expandable-container {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.expandable-container h2 {
+  padding: 25px;
+  margin: 0;
+  cursor: pointer;
+  background-color: #1a4144;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expandable-container h2::after {
+  content: ">";
+  transform: rotate(90deg);
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.expandable-container.expanded h2::after {
+  transform: rotate(-90deg);
+}
+
+.expandable-container h2:hover {
+  background-color: #123437;
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: #f5f1ce;
+  padding: 0 25px;
+}
+
+.content p {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.expanded .content {
+  max-height: 500px;
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    padding: 10px;
+  }
+
+  .main-container {
+    padding: 10px;
+  }
+
+  .expandable-container h2 {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .content p {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+/* product css start */
+
+.page-wrapper {
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-attachment: fixed;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+}
+
+.products {
+  background-image: url("bg-img.jpg");
+}
+
+.products h1 {
+  font-size: 2rem;
+  color: #f5f1ce;
+  padding: 20px 0;
+  text-align: center;
+  padding: 25px;
+  padding-top: 50px;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  width: 100%;
+  max-width: 90%;
+  border-radius: 10px;
+  margin-bottom: 70px;
+}
+
+.singleProductBlock {
+  margin: 10px;
+  padding: 20px;
+  background-color: rgba(245, 241, 206, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  max-width: 45%;
+}
+
+.singleProductBlock:hover{
+    background-color:rgba(60, 59, 59, 0.5);
+
+}
+
+@media only screen and (max-width: 800px) {
+  .singleProductBlock {
+    flex-basis: 100%;
+  }
+
+  #productsContainer {
+    max-width: 100%;
+  }
+}
+
+.singleProductBlock img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+}
+
+.singleProductBlock {
+  font-family: "Montserrat", sans-serif;
+}
+
+.singleProductBlock h3 {
+  color: white;
+  font-size: 30px;
+}
+
+.singleProductBlock p {
+  color: #f5f1ce;
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.singleProductBlock button {
+  color: #f5f1ce;
+  font-size: 20px;
+}
+
+.singleProductBlock h3 span {
+  float: right;
+}
+
+.singleProductBlock button {
+  border: 1px solid #f5f1ce;
+  border-radius: 0.5em;
+  padding: 1em;
+  background: linear-gradient(#417060, #1a4144);
+  color: #fff;
+  font-size: 1em;
+  font-weight: 800;
+  position: relative;
+  transition: background 0.5s;
+}
+
+.singleProductBlock button:hover {
+  background: linear-gradient(#1a4144, #417060);
+  cursor: pointer;
+  color: #ececec;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Gallery</title>
+    <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="nav&foot.css">
+    <!-- Bootstrap 5 – responsive grid & components -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" id="navbar">
+          <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+              <div class="white">LEAF</div>
+              <div class="blue">LINK</div>
+            </a>
+            <ul class="navbar-menu">
+              <li><a href="../home_page/home_page.html">Home</a></li>
+              <li><a href="../about_us/about.html">About</a></li>
+              <li><a href="../services/services.html">Services</a></li>
+              <li><a href="grid.html">Gallery</a></li>
+              <li><a href="../contact_us/contact.html">Contact</a></li>
+            </ul>
+            <div class="search-container">
+              <input type="text" placeholder="Search..." class="search-input">
+              <button type="submit" class="search-button">&#128269;</button>
+            </div>
+            <div class="menu-icon">
+              <div class="hamburger">
+                <span class="hamburger-icon">&#9776;</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    <div class="row">
+        <div class="column">
+            <img src="images/img1.jpeg" alt="Image 1">
+            <img src="images/img2.jpg" alt="Image 2">
+            <img src="images/img3.jpg" alt="Image 3">
+            <img src="images/img4.jpeg" alt="Image 4">
+            <img src="images/img5.jpeg" alt="Image 5">
+            <img src="images/img6.jpeg" alt="Image 6">
+        </div>
+        <div class="column">
+            <img src="images/img8.jpeg" alt="Image 8">
+            <img src="images/img9.jpeg" alt="Image 9">
+            <img src="images/icegif-84.gif" alt="Short Video GIF">
+            <img src="images/Orb.gif" alt="Image 11">
+            <img src="images/img12.jpeg" alt="Image 12">
+            <img src="images/img13.jpeg" alt="Image 13">
+        </div>
+        <div class="column">
+            <img src="images/img14.jpeg" alt="Image 14">
+            <img src="images/img15.jpeg" alt="Image 15">
+            <img src="images/img16.jpeg" alt="Image 16">
+            <img src="images/img17.jpeg" alt="Image 17">
+            <img src="images/img18.jpeg" alt="Image 18">
+            <img src="images/img19.jpeg" alt="Image 19">
+            <img src="images/img20.jpeg" alt="Image 20">
+
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <img id="popupImg" src="" alt="Popup Image">
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-section">
+            <h2>About LEAFLINK</h2>
+            <p>We are dedicated to preserving and managing our forests for future generations.</p>
+          </div>
+          <div class="footer-section">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="../home_page/home_page.html">Home</a></li>
+                <li><a href="../about_us/about.html">About</a></li>
+                <li><a href="../services/services.html">Services</a></li>
+                <li><a href="grid.html">Gallery</a></li>
+                <li><a href="../contact_us/contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h2>Contact Us</h2>
+              <p>Email: leaflink.in@gmail.com</p>
+              <p>Phone: +91-11-20819220</p>
+              <p>Address : </p>
+              <p>2th floor,
+                COED Department,
+                SVNIT Campus,
+                SURAT,
+                GUJARAT - 395006</p>
+          </div>
+          <div class="footer-section">
+            <h2>Follow Us</h2>
+            <div class="social-icons">
+              <a href="https://www.facebook.com/iamforestlover/"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="https://x.com/moefcc?lang=en"><i class="fa-brands fa-square-twitter"></i></a>
+                <a href="https://www.instagram.com/indian_forest_official/?hl=en"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="https://in.linkedin.com/company/indian-forest-service-government-of-india"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <div class="job">
+              <a href="../job_form/job_form.html">Apply for a Job &#8599;</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 LeafLink. All rights reserved.</p>
+        </div>
+      </footer>
+
+    <script src="grid.js"></script>
+    <!-- Shared OOJS NavMenu class -->
+    <script src="../shared/nav.js"></script>
+    <!-- Bootstrap 5 JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+</body>
+
+</html>

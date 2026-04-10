@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forestry</title>
+  <link rel="stylesheet" href="nav&foot.css">
+  <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="base.css">
+  <!-- Bootstrap 5 – responsive grid & components -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-logo">
+        <div class="white">LEAF</div>
+        <div class="green">LINK</div>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="home_page.html">Home</a></li>
+        <li><a href="../about_us/about.html">About</a></li>
+        <li><a href="../services/services.html">Services</a></li>
+        <li><a href="../Gallery/grid.html">Gallery</a></li>
+        <li><a href="../contact_us/contact.html">Contact</a></li>
+      </ul>
+      <div class="search-container">
+        <input type="text" placeholder="Search..." class="search-input">
+        <button type="submit" class="search-button">&#128269;</button>
+      </div>
+      <div class="menu-icon">
+        <div class="hamburger">
+          <span class="hamburger-icon">&#9776;</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 3D CSS Floating Leaf Hero Element (LeafParticle OOJS class) -->
+  <div class="leaf-3d-scene" id="leaf3dScene" aria-hidden="true">
+    <div class="leaf-3d-container" id="leafContainer">
+      <div class="leaf-3d leaf-3d--front"></div>
+      <div class="leaf-3d leaf-3d--back"></div>
+      <div class="leaf-3d leaf-3d--side"></div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="slider-wrapper">
+      <div class="slider" id="slider" style="--img-prev:url(images\img1.jpg);">
+        <div class="slider__content" id="slider-content">
+          <div class="slider__images">
+            <div class="slider__images-item slider__images-item--active" data-id="1"><img src="images\img1.jpg" /></div>
+            <div class="slider__images-item" data-id="2"><img src="images\img2.jpg" /></div>
+            <div class="slider__images-item" data-id="3"><img src="images\img3.jpg" /></div>
+            <div class="slider__images-item" data-id="4"><img src="images\img4.jpg" /></div>
+            <div class="slider__images-item" data-id="5"><img src="images\img5.jpg" /></div>
+            <div class="slider__images-item" data-id="6"><img src="images\img6.jpg" /></div>
+          </div>
+          <div class="slider__text">
+            <div class="slider__text-item slider__text-item--active" data-id="1">
+              <div class="slider__text-item-head">
+                <h3>Forest</h3>
+              </div>
+              <div class="slider__text-item-info">
+                <p>“And into the forest I go, to lose my mind and find my soul”</p>
+              </div>
+            </div>
+            <div class="slider__text-item" data-id="2">
+              <div class="slider__text-item-head">
+                <h3>Trees</h3>
+              </div>
+              <div class="slider__text-item-info">
+                <p>“I took a walk in the woods and came out taller than the trees” </p>
+              </div>
+            </div>
+            <div class="slider__text-item" data-id="3">
+              <div class="slider__text-item-head">
+                <h3>Animals</h3>
+              </div>
+              <div class="slider__text-item-info">
+                <p>“Souls of the forest”</p>
+              </div>
+            </div>
+            <div class="slider__text-item" data-id="4">
+              <div class="slider__text-item-head">
+                <h3>Insects</h3>
+              </div>
+              <div class="slider__text-item-info">
+                <p>“Tiny architects of nature's tapestry”</p>
+              </div>
+            </div>
+            <div class="slider__text-item" data-id="5">
+              <div class="slider__text-item-head">
+                <h3>Birds</h3>
+              </div>
+              <div class="slider__text-item-info">
+                <p>“Soaring spirits with earthly feet”</p>
+              </div>
+            </div>
+            <div class="slider__text-item" data-id="6">
+              <div class="slider__text-item-head">
+                <h3>Verdure</h3>
+              </div>
+              <div class="slider__text-item-info">
+                <p>“Verdant cathedral of towering giants”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slider__nav">
+          <div class="slider__nav-arrows">
+            <div class="slider__nav-arrow slider__nav-arrow--left" id="left">to left</div>
+            <div class="slider__nav-arrow slider__nav-arrow--right" id="right">to right</div>
+          </div>
+          <div class="slider__nav-dots" id="slider-dots">
+            <div class="slider__nav-dot slider__nav-dot--active" data-id="1"></div>
+            <div class="slider__nav-dot" data-id="2"></div>
+            <div class="slider__nav-dot" data-id="3"></div>
+            <div class="slider__nav-dot" data-id="4"></div>
+            <div class="slider__nav-dot" data-id="5"></div>
+            <div class="slider__nav-dot" data-id="6"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="forestry">
+
+      <h2>"Forests: The Earth's Lungs and Biodiversity Hotspots"</h2>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forests act as the Earth's lungs by absorbing carbon dioxide
+        and releasing oxygen, playing a crucial role in regulating the global climate. They are also vital biodiversity
+        hotspots, hosting more than 80% of the world’s terrestrial species. The complex ecosystems within forests
+        provide habitat and sustenance for countless plants, animals, and microorganisms, contributing to the overall
+        health and stability of the environment. Protecting these rich ecosystems is essential for sustaining life on
+        Earth and combating climate change</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forests are vital for maintaining atmospheric balance,
+        producing oxygen, and sequestering carbon. They are also rich in biodiversity, supporting a vast array of
+        species and ecosystems. These ecosystems regulate climate, influence weather patterns, and provide critical
+        resources. Safeguarding forests is essential for preserving global health, ecological diversity, and ensuring
+        sustainable development.</p>
+    </div>
+    <div class="highlights">
+      <h1><b>Highlights</b></h1>
+      <div class="img-container">
+        <div class="image" id="image1">
+          <div class="overlay">
+            <h3>Sustainable Forest Management</h3>
+            <p>Sustainable forest management ensures that forests are maintained and utilized in a way that preserves
+              their ecological balance while meeting current needs.</p>
+          </div>
+        </div>
+        <div class="image" id="image2">
+          <div class="overlay">
+            <h3>Biodiversity Conservation</h3>
+            <p>Forests are home to a vast array of plant and animal species, making them crucial for global
+              biodiversity.</p>
+          </div>
+        </div>
+        <div class="image" id="image3">
+          <div class="overlay">
+            <h3>Climate Change Mitigation</h3>
+            <p>Forests play a critical role in mitigating climate change by sequestering carbon dioxide from the
+              atmosphere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="for-us">
+      <h1><b>Forest For Us</b></h1>
+      <div class="merger">
+        <div class="cimg">
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Forestry Division spearheads efforts to promote
+            sustainable forest management, balancing economic,
+            social, and environmental interests across forested landscapes. It engages with member countries,
+            partners,
+            civil society, and the private sector to advocate for effective policies and enhance the role of forests
+            in
+            mitigating climate change and aiding adaptation efforts.
+            <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Additionally, the Division is responsible for gathering,
+            analyzing, and disseminating information on
+            global
+            forest resources, including the production, trade, and consumption of both wood and non-wood forest
+            products.
+            The Committee on Forestry, along with six regional forestry commissions, provides guidance to us in our
+            technical forestry initiatives.
+          </p>
+        </div>
+        <div class="usimg">
+          <img src="images/for us.png">
+        </div>
+      </div>
+    </div>
+    <div class="to-us">
+      <div class="img-container">
+        <div class="image-us" id="image1-1">
+          <div class="overlay2">
+            <a>environment improvement</a>
+          </div>
+        </div>
+        <div class="image-us" id="image2-2">
+          <div class="overlay2">
+            <a>Biodiversity support</a>
+          </div>
+        </div>
+        <div class="image-us" id="image3-3">
+          <div class="overlay2">
+            <a>Economic benefits through tourism</a>
+          </div>
+        </div>
+        <div class="image-us" id="image4">
+          <div class="overlay2">
+            <a>Physical and
+              Mental health benefits</a>
+          </div>
+        </div>
+        <div class="image-us" id="image5">
+          <div class="overlay2">
+            <a>Genetic diversity</a>
+          </div>
+        </div>
+        <div class="image-us" id="image6">
+          <div class="overlay2">
+            <a>Soil protection</a>
+          </div>
+        </div>
+      </div>
+      <div class="Events">
+        <h1><b>Events</b></h1>
+        <div class="container">
+          <div class="wrap">
+            <div class="contain1">
+              <img src="images/Events1.png" alt="">
+              <h2>International Day of Forests (March 21)</h2>
+              <p>India observes the International Day of Forests, established by the United Nations, on March 21 each
+                year. The day is marked with various activities across the country, including workshops, seminars, and
+                tree planting drives. The focus is on educating the public about the critical role of forests in
+                sustaining biodiversity, combating climate change, and supporting livelihoods.</p>
+            </div>
+            <div class="contain1">
+              <img src="images/Events2.jpg" alt="">
+              <h2>Wildlife Week (October 1-7)</h2>
+              <p>Although primarily focused on wildlife, Wildlife Week in India also emphasizes the role of forests in
+                supporting biodiversity. Celebrated every year from October 1 to October 7, the week involves
+                educational programs, wildlife conservation activities, and public awareness campaigns about the
+                importance of forests in providing habitat for wildlife and maintaining ecological balance.</p>
+            </div>
+            <div class="contain1">
+              <img src="images/Events3.png" alt="">
+              <h2>Van Mahotsav (Tree Plantation Day)</h2>
+              <p>Van Mahotsav, or Tree Plantation Day, is celebrated annually from July 1 to July 7 in India. Initiated
+                in 1950 by then Union Minister for Agriculture, K. M. Munshi, this week-long event aims to promote tree
+                planting and raise awareness about the importance of forests. Schools, communities, and government
+                agencies across the country participate by planting trees, organizing educational activities, and
+                spreading messages about forest conservation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <button id="back-to-top" title="Back to Top"><h3>&#8593;</h3></button>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h2>About LEAFLINK</h2>
+          <p>We are dedicated to preserving and managing our forests for future generations.</p>
+        </div>
+        <div class="footer-section">
+          <h2>Quick Links</h2>
+          <ul>
+            <li><a href="home_page.html">Home</a></li>
+            <li><a href="../about_us/about.html">About</a></li>
+            <li><a href="../services/services.html">Services</a></li>
+            <li><a href="../Gallery/grid.html">Gallery</a></li>
+            <li><a href="../contact_us/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h2>Contact Us</h2>
+          <p>Email: leaflink.in@gmail.com</p>
+          <p>Phone: +91-11-20819220</p>
+          <p>Address : </p>
+          <p>2th floor,
+            COED Department,
+            SVNIT Campus,
+            SURAT,
+            GUJARAT - 395006</p>
+        </div>
+        <div class="footer-section">
+          <h2>Follow Us</h2>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/iamforestlover/"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://x.com/moefcc?lang=en"><i class="fa-brands fa-square-twitter"></i></a>
+            <a href="https://www.instagram.com/indian_forest_official/?hl=en"><i class="fa-brands fa-square-instagram"></i></a>
+            <a href="https://in.linkedin.com/company/indian-forest-service-government-of-india"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+          <div class="job">
+            <a href="../job_form/job_form.html">Apply for a Job &#8599;</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Forestry. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="home_page.js"></script>
+    <!-- Shared OOJS NavMenu class -- replaces inline hamburger handlers -->
+    <script src="../shared/nav.js"></script>
+    <!-- Bootstrap 5 JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

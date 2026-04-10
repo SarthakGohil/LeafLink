@@ -1,0 +1,216 @@
+/* ── Global CSS ── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f5f1ce;
+  color: #1a4144;
+}
+
+/* ── Navbar ── */
+.ll-nav {
+  background: #1a4144;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.ll-nav .navbar-brand span.leaf  { color: #f5f1ce; font-weight: 800; font-size: 1.4rem; }
+.ll-nav .navbar-brand span.link  { color: #5cba7d; font-weight: 800; font-size: 1.4rem; }
+.ll-nav .nav-link { color: #f5f1ce !important; font-weight: 600; transition: color .2s; }
+.ll-nav .nav-link:hover { color: #5cba7d !important; }
+.ll-nav .navbar-toggler { border-color: #5cba7d; }
+.ll-nav .navbar-toggler-icon { filter: invert(1); }
+
+/* ── Hero Slider (stateful component) ── */
+.hero-slide {
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 60px;
+  transition: background-image .6s ease;
+  position: relative;
+}
+.hero-slide::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 60%);
+}
+.hero-slide .slide-text {
+  position: relative; z-index: 2;
+  color: #f5f1ce; padding: 0 40px;
+}
+.hero-slide .slide-text h2 { font-size: 3rem; font-weight: 800; }
+.hero-slide .slide-text p  { font-size: 1.2rem; }
+
+.slider-dots { display: flex; gap: 10px; justify-content: center; padding: 18px 0; }
+.slider-dots button {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: none; background: #1a4144; opacity: .4; cursor: pointer; transition: opacity .3s;
+}
+.slider-dots button.active { opacity: 1; background: #5cba7d; }
+
+.slider-arrows { display: flex; gap: 12px; }
+.slider-arrows button {
+  background: rgba(255,255,255,.2); border: none; color: #fff;
+  font-size: 1.6rem; width: 48px; height: 48px; border-radius: 50%;
+  cursor: pointer; backdrop-filter: blur(4px); transition: background .2s;
+}
+.slider-arrows button:hover { background: rgba(255,255,255,.4); }
+
+/* ── 3D CSS Floating Leaf (LeafParticle OOJS class) ── */
+.leaf-3d-scene {
+  position: fixed; top: 75px; right: 28px;
+  width: 70px; height: 70px;
+  perspective: 350px;
+  z-index: 998; pointer-events: none;
+}
+.leaf-3d-container {
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  /* LeafParticle class drives rotate via inline style */
+}
+.leaf-face {
+  position: absolute;
+  width: 55px; height: 55px;
+  border-radius: 0 50% 0 50%;
+  opacity: .88;
+}
+.leaf-face.front { background: linear-gradient(135deg,#2d8a4e,#5cba7d); transform: translateZ(5px); }
+.leaf-face.back  { background: linear-gradient(135deg,#1a6b38,#3d9b60); transform: rotateY(180deg) translateZ(5px); }
+.leaf-face.side  {
+  width: 8px; height: 55px; border-radius: 0;
+  background: linear-gradient(180deg,#145229,#2d8a4e);
+  transform: rotateY(90deg) translateZ(25px);
+}
+
+/* ── Section headings ── */
+.section-title { color: #1a4144; font-weight: 800; margin-bottom: 1.5rem; }
+
+/* ── Highlight cards (stateless) ── */
+.highlight-card {
+  height: 300px; border-radius: 10px; overflow: hidden;
+  background-size: cover; background-position: center;
+  position: relative; cursor: pointer;
+}
+.highlight-card .overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .4s;
+  padding: 20px; text-align: center; color: #f5f1ce;
+}
+.highlight-card:hover .overlay { opacity: 1; }
+.highlight-card h5 { color: #f5f1ce; position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-weight: 700; }
+
+/* ── Services accordion (stateful) ── */
+.service-accordion {
+  border: 1px solid #1a4144; border-radius: 8px; margin-bottom: 12px; overflow: hidden;
+}
+.service-accordion .acc-header {
+  background: #1a4144; color: #f5f1ce;
+  padding: 16px 22px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  font-weight: 600; font-size: 1.05rem;
+}
+.service-accordion .acc-body {
+  padding: 0; max-height: 0; overflow: hidden;
+  transition: max-height .4s ease, padding .3s;
+  background: #fff;
+}
+.service-accordion .acc-body.open {
+  max-height: 400px; padding: 18px 22px;
+}
+
+/* ── Gallery grid (stateful – lightbox) ── */
+.gallery-img {
+  width: 100%; border-radius: 8px; cursor: pointer;
+  transition: transform .3s, box-shadow .3s;
+  display: block;
+}
+.gallery-img:hover { transform: scale(1.03); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+.lightbox-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.85);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.lightbox-overlay img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+.lightbox-overlay .close-lb {
+  position: absolute; top: 20px; right: 30px;
+  color: #fff; font-size: 2.5rem; cursor: pointer; background: none; border: none;
+}
+
+/* ── Forms (stateful components) ── */
+.ll-form-wrap {
+  max-width: 600px; margin: 0 auto;
+  background: #1a4144; padding: 36px; border-radius: 12px;
+}
+.ll-form-wrap label { color: #f5f1ce; font-weight: 600; margin-bottom: 4px; display: block; }
+.ll-form-wrap input, .ll-form-wrap textarea {
+  width: 100%; padding: 10px 14px; border: none; border-radius: 6px;
+  background: #f5f1ce; font-family: inherit; font-size: 15px; margin-bottom: 6px;
+}
+.ll-form-wrap textarea { resize: vertical; min-height: 110px; }
+.ll-form-wrap .field-error { color: #ff7675; font-size: 12px; margin-bottom: 10px; display: block; }
+.ll-form-wrap button[type=submit] {
+  width: 100%; padding: 12px; background: #5cba7d; color: #fff;
+  border: none; border-radius: 6px; font-size: 1rem; font-weight: 700;
+  cursor: pointer; margin-top: 10px; transition: background .2s;
+}
+.ll-form-wrap button[type=submit]:hover  { background: #3d9b60; }
+.ll-form-wrap button[type=submit]:disabled { background: #888; cursor: not-allowed; }
+.form-status { text-align: center; font-weight: 700; margin-top: 12px; }
+
+/* ── Footer ── */
+.ll-footer { background: #1a4144; color: #f5f1ce; padding: 40px 0 16px; }
+.ll-footer h5 { color: #5cba7d; margin-bottom: 12px; }
+.ll-footer a { color: #f5f1ce; text-decoration: none; display: block; line-height: 2; }
+.ll-footer a:hover { color: #5cba7d; }
+.ll-footer .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); margin-top: 28px; padding-top: 14px; text-align: center; font-size: .85rem; }
+.ll-footer .social-links a { display: inline-block; font-size: 1.5rem; margin-right: 12px; }
+
+/* ── About page ── */
+.about-quote {
+  background: #1a4144; color: #f5f1ce;
+  padding: 40px; border-radius: 12px; text-align: center;
+  font-size: 1.2rem; font-style: italic; margin: 40px 0;
+}
+.team-card {
+  background: #fff; border-radius: 10px; padding: 24px;
+  border-left: 4px solid #5cba7d; margin-bottom: 20px;
+}
+.team-card h5 { color: #1a4144; font-weight: 800; }
+.team-card span { color: #5cba7d; font-size: .9rem; font-weight: 600; }
+
+/* ── Auth form helpers (Login / Register / OTP pages) ────────────────────── */
+.ll-label {
+  display: block; font-weight: 700; font-size: 13px;
+  color: #1a4144; margin-bottom: 5px;
+}
+.ll-input {
+  width: 100%; padding: 10px 14px;
+  border: 2px solid #ccc; border-radius: 8px;
+  font-family: inherit; font-size: 15px;
+  background: #fff; transition: border-color .2s;
+  color: #1a4144;
+}
+.ll-input:focus { outline: none; border-color: #5cba7d; }
+.ll-err {
+  display: block; color: #c0392b; font-size: 12px;
+  margin-top: 4px; margin-bottom: 6px; font-weight: 600;
+}
+.ll-btn {
+  width: 100%; padding: 12px; border: none; border-radius: 8px;
+  background: #1a4144; color: #f5f1ce;
+  font-family: inherit; font-size: 16px; font-weight: 800;
+  cursor: pointer; transition: background .2s;
+}
+.ll-btn:hover    { background: #2d6b50; }
+.ll-btn:disabled { background: #888; cursor: not-allowed; }
+.ll-status { text-align: center; font-weight: 700; margin: 10px 0; font-size: 14px; }
+
