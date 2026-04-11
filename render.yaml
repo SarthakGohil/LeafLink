@@ -20,6 +20,8 @@ services:
         sync: false
       - key: EMAIL_PASS
         sync: false
+      - key: EMAIL_FROM
+        sync: false
       - key: CLIENT_URL
         sync: false
       - key: OTP_EXPIRES_MINUTES
