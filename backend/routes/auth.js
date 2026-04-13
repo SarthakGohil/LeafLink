@@ -80,31 +80,28 @@ router.post('/register', authLimiter, registerRules, async (req, res) => {
     // Generate OTP
     const otp = await OTP.createOTP(email, 'registration');
 
-    // Send OTP email — falls back to console log in development if email not configured
-    const isDev = process.env.NODE_ENV !== 'production';
-    const emailConfigured = process.env.EMAIL_USER && process.env.EMAIL_USER !== 'your_gmail@gmail.com';
-    if (emailConfigured) {
-      await sendOTPEmail(email, otp, 'registration');
-    } else if (isDev) {
-      console.log(`\n📨 [DEV MODE] OTP for ${email}: ${otp}\n   Set EMAIL_USER & EMAIL_PASS in .env to send real emails.\n`);
-    } else {
-      // Production without email configured: reject gracefully
-      await User.deleteOne({ email });
-      return res.status(503).json({ error: 'Email service not configured. Contact admin.' });
+    // DEV LOG: Print OTP to logs for easy testing on Render
+    console.log(`[AUTH] 🌿 OTP for ${email}: ${otp}`);
+
+    // Attempt to send OTP email
+    console.log(`[AUTH] Attempting to send email to ${email}...`);
+    const emailResult = await sendOTPEmail(email, otp, 'registration');
+
+    if (!emailResult.success) {
+      console.warn(`[AUTH] Email failed for ${email} but continuing registration: ${emailResult.message}`);
+      // Proceed even if email fails, as we've already logged the OTP for dev/testing.
     }
 
     res.status(200).json({
-      message: emailConfigured
+      message: emailResult.success 
         ? `OTP sent to ${email}. Please verify to complete registration.`
-        : `[Dev] OTP logged to server console.`,
+        : `Registration initiated. (Email service unavailable, check server logs for OTP).`,
       requiresOtp: true,
-      email,
-      // Only expose raw OTP in dev, NEVER in production
-      ...(isDev && !emailConfigured && { devOtp: otp }),
+      email
     });
   } catch (err) {
-    console.error('Register error:', err.message);
-    res.status(500).json({ error: 'Registration failed. Please try again.' });
+    console.error('[AUTH] Register error:', err);
+    res.status(500).json({ error: `Server Error: ${err.message}` });
   }
 });
 
@@ -153,19 +150,25 @@ router.post('/resend-otp', otpSendLimiter, async (req, res) => {
     if (!user) return res.status(404).json({ error: 'No account with this email.' });
 
     const otp = await OTP.createOTP(email, type);
-    const isDev = process.env.NODE_ENV !== 'production';
-    const emailConfigured = process.env.EMAIL_USER && process.env.EMAIL_USER !== 'your_gmail@gmail.com';
-    if (emailConfigured) {
-      await sendOTPEmail(email, otp, type);
+    
+    // DEV LOG: Print OTP to logs for easy testing on Render
+    console.log(`[AUTH] 🌿 Resending OTP for ${email}: ${otp}`);
+
+    // Attempt to send OTP email
+    console.log(`[AUTH] Resending email to ${email}...`);
+    const emailResult = await sendOTPEmail(email, otp, type);
+
+    if (emailResult.success) {
       res.json({ message: 'New OTP sent to your email.' });
-    } else if (isDev) {
-      console.log(`\n📨 [DEV MODE] Resent OTP for ${email}: ${otp}\n`);
-      res.json({ message: '[Dev] OTP logged to server console.', devOtp: otp });
     } else {
-      return res.status(503).json({ error: 'Email service not configured. Contact admin.' });
+      console.warn(`[AUTH] Resend failed for ${email} but continuing for testing: ${emailResult.message}`);
+      return res.status(200).json({ 
+        message: 'Resend initiated. (Email service unavailable, check server logs for OTP).' 
+      });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Could not resend OTP.' });
+    console.error('[AUTH] Resend OTP error:', err);
+    res.status(500).json({ error: `Server Error: ${err.message}` });
   }
 });
 
@@ -229,39 +232,49 @@ router.post('/forgot-password', otpSendLimiter, [
 
   try {
     const { email } = req.body;
-    console.log(`🔑 Forgot-password request for: ${email}`);
+    console.log(`[AUTH] Forgot-password request: ${email}`);
+
+    if (!email) {
+      console.log(`[AUTH] Error: Email is missing in request body.`);
+      return res.status(400).json({ error: 'Email is required.' });
+    }
 
     const user = await User.findOne({ email });
-    console.log(`👤 User found: ${user ? 'YES' : 'NO'}, verified: ${user?.isEmailVerified}`);
+    console.log(`[AUTH] User lookup for ${email}: ${user ? 'Found' : 'Not Found'}`);
 
     // No account at all → return generic message (anti-enumeration)
     if (!user) {
+      console.log(`[AUTH] Info: User ${email} not found. Returning generic success.`);
       return res.json({ message: 'If this email is registered, an OTP has been sent.' });
     }
 
     // User exists (verified OR unverified) → send OTP
+    console.log(`[AUTH] Generating OTP for ${email}...`);
     const otp = await OTP.createOTP(email, 'reset');
-    const isDev = process.env.NODE_ENV !== 'production';
-    const emailConfigured = process.env.EMAIL_USER && process.env.EMAIL_USER !== 'your_gmail@gmail.com';
-    console.log(`📧 emailConfigured: ${emailConfigured}, isDev: ${isDev}`);
+    
+    // DEV LOG: Print OTP to logs for easy testing on Render
+    console.log(`[AUTH] 🌿 Reset OTP for ${email}: ${otp}`);
 
-    if (emailConfigured) {
-      console.log(`📨 Sending OTP email to ${email}...`);
-      await sendOTPEmail(email, otp, 'reset');
-      console.log(`✅ OTP email sent successfully to ${email}`);
-    } else if (isDev) {
-      console.log(`\n📨 [DEV MODE] Password Reset OTP for ${email}: ${otp}\n`);
-    } else {
-      return res.status(503).json({ error: 'Email service not configured. Contact admin.' });
+    // Attempt to send OTP email
+    console.log(`[AUTH] Sending reset email to ${email}...`);
+    const emailResult = await sendOTPEmail(email, otp, 'reset');
+
+    if (!emailResult.success) {
+      console.warn(`[AUTH] Reset email failed for ${email} but continuing: ${emailResult.message}`);
+      // Proceed so user can still use the OTP from logs if email fails
     }
 
+    console.log(`[AUTH] Request completed successfully for ${email}`);
     res.json({
-      message: 'If this email is registered, an OTP has been sent.',
-      ...(isDev && !emailConfigured && { devOtp: otp }),
+      message: emailResult.success 
+        ? 'If this email is registered, an OTP has been sent.'
+        : 'Reset initiated. (Email service unavailable, check server logs for OTP).'
     });
   } catch (err) {
-    console.error('Forgot password error:', err.message);
-    res.status(500).json({ error: 'Could not process request. Try again.' });
+    console.error('[AUTH] CRITICAL ERROR in forgot-password:', err);
+    res.status(500).json({ 
+      error: `Server Error: ${err.message}` 
+    });
   }
 });
 

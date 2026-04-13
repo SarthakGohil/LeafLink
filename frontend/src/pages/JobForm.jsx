@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+const API = import.meta.env.VITE_API_URL || '/api'
 
 /**
  * FormValidator — OOJS utility class used by the React component.

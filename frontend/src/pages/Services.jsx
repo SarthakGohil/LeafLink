@@ -12,12 +12,12 @@ const SERVICES = [
 ]
 
 const PRODUCTS = [
-  { name: 'Tree Planting Kits',           stars: 5, price: '$30–$50 per kit',     desc: 'Complete kits for planting trees including saplings, soil, fertilizers and instructions.' },
-  { name: 'Forestry Tools',               stars: 4, price: '$25–$600',             desc: 'Pruning shears, chainsaws and hand tools for all forestry needs.' },
-  { name: 'Tree Seedlings',               stars: 4, price: '$5–$15 per seedling',  desc: 'Hardwoods and evergreens suitable for reforestation or personal gardens.' },
-  { name: 'Forest Management Software',   stars: 4, price: '$500–$2,000',          desc: 'Advanced software for tracking forest resources, mapping and growth forecasting.' },
-  { name: 'Soil Testing Kits',            stars: 5, price: '$40–$80',              desc: 'Analyse pH, nutrient content and moisture — essential for optimal planting.' },
-  { name: 'Wildlife Monitoring Cameras',  stars: 4, price: '$150–$400',            desc: 'Motion-activated cameras for research, conservation and wildlife protection.' },
+  { name: 'Tree Planting Kits',           stars: 5, price: '$30-$50 per kit',     desc: 'Complete kits for planting trees including saplings, soil, fertilizers and instructions.' },
+  { name: 'Forestry Tools',               stars: 4, price: '$25-$600',             desc: 'Pruning shears, chainsaws and hand tools for all forestry needs.' },
+  { name: 'Tree Seedlings',               stars: 4, price: '$5-$15 per seedling',  desc: 'Hardwoods and evergreens suitable for reforestation or personal gardens.' },
+  { name: 'Forest Management Software',   stars: 4, price: '$500-$2,000',          desc: 'Advanced software for tracking forest resources, mapping and growth forecasting.' },
+  { name: 'Soil Testing Kits',            stars: 5, price: '$40-$80',              desc: 'Analyse pH, nutrient content and moisture — essential for optimal planting.' },
+  { name: 'Wildlife Monitoring Cameras',  stars: 4, price: '$150-$400',            desc: 'Motion-activated cameras for research, conservation and wildlife protection.' },
 ]
 
 /**

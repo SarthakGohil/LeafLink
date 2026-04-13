@@ -14,6 +14,11 @@ const profileRoutes = require('./routes/profile');
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
+/* ── Render Proxy Trust ──────────────────────────────────────────────────── */
+// Render uses a reverse proxy. Trusting the first proxy allows rate limiters 
+// to see the real client IP instead of the proxy's IP.
+app.set('trust proxy', 1);
+
 /* ── Security: HTTP headers (helmet) ─────────────────────────────────────── */
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
@@ -77,8 +82,9 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅  MongoDB connected');
-    app.listen(PORT, () => {
-      console.log(`🌿  LeafLink API running on http://localhost:${PORT}`);
+    const HOST = '0.0.0.0';
+    app.listen(PORT, HOST, () => {
+      console.log(`🌿  LeafLink API running on http://${HOST}:${PORT}`);
       console.log(`🔒  Security: helmet ✓ | cors ✓ | rate-limit ✓ | mongo-sanitize ✓`);
     });
   })

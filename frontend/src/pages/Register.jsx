@@ -55,13 +55,7 @@ export default function Register() {
       if (res.ok) {
         setPendingEmail(form.email)
         setStep(2)
-        // Dev mode: auto-fill OTP from response
-        if (data.devOtp) {
-          setOtp(data.devOtp)
-          setStatus(`⚠️ Dev Mode: Email not configured. OTP auto-filled: ${data.devOtp}`)
-        } else {
-          setStatus(data.message)
-        }
+        setStatus(data.message)
       } else {
         const msg = data.errors ? data.errors.map(e => e.msg).join(' ') : data.error
         setStatus(msg)
